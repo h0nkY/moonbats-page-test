@@ -71,7 +71,7 @@
                 <a href="#gallery">Gallery</a>
                 <a href="https://moonbats.stakeaway.io/" target="_blank" class="btn-connect">Staking</a>
             </div>
-            <button class="mobile-menu-btn">☰</button>
+            <button class="mobile-menu-btn" aria-label="Open menu" aria-expanded="false">☰</button>
         </div>
     </nav>
 
@@ -620,33 +620,67 @@
                     <h3>Official Links</h3>
                     <p>These are the only official links for MoonBats! Do NOT click anything not listed on this site.</p>
                     
-                    <div class="social-links">
-                        <a href="https://discord.gg/moonbats" target="_blank" class="social-btn discord-btn">
-                            <svg width="20" height="20" viewBox="0 0 127.14 96.36" fill="currentColor">
-                                <path d="M107.7,8.07A105.15,105.15,0,0,0,81.47,0a72.06,72.06,0,0,0-3.36,6.83A97.68,97.68,0,0,0,49,6.83,72.37,72.37,0,0,0,45.64,0,105.89,105.89,0,0,0,19.39,8.09C2.79,32.65-1.59,56.6.54,80.28h0A105.73,105.73,0,0,0,25.32,96.36,77.47,77.47,0,0,0,29.89,89.8a68.42,68.42,0,0,1-8.3-3.92,54.47,54.47,0,0,0,4.06-3.12,68.92,68.92,0,0,0,59.84,0,54.47,54.47,0,0,0,4.06,3.12,68.42,68.42,0,0,1-8.3,3.92,77.47,77.47,0,0,0,4.57,6.56,105.73,105.73,0,0,0,24.78-16.08h0C128.46,58.55,123.64,34.73,107.7,8.07ZM42.45,65.69C36.84,65.69,32.2,60.47,32.2,54s4.53-11.69,10.25-11.69S52.59,47.53,52.59,54,48.17,65.69,42.45,65.69Zm42.24,0c-5.61,0-10.25-5.22-10.25-11.69s4.53-11.69,10.25-11.69S94.83,47.53,94.83,54,90.4,65.69,84.69,65.69Z"/>
-                            </svg>
-                            Discord
-                        </a>
-                        <a href="https://twitter.com/Moon_Bats" target="_blank" class="social-btn twitter-btn">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.492L13.03 15.53H13l-3.478 7.316H1.924l8.6-9.83L0 1.154h7.68l4.853 6.436h.054l3.204-6.436zm-2.524 20.552h2.038L6.954 3.786H4.8l11.577 17.919z"/>
-                            </svg>
-                            X
-                        </a>
-                        <a href="https://www.instagram.com/MoonBats4Life" target="_blank" class="social-btn instagram-btn">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12-5.4-12-12-12zm0 22C5.9 22 0 16.1 0 9.5S5.9 0 12 0s12 5.9 12 13-5.9 13-12 13z"/>
-                                <path d="M12 5.5c2.5 0 4.5 2 4.5 4.5S14.5 14 12 14 7.5 12 7.5 9.5 9.5 5.5 12 5.5z"/>
-                            </svg>
-                            Instagram
-                        </a>
-                        <a href="https://twitter.com/i/communities/1567868413992902659" target="_blank" class="social-btn community-btn">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M16 4c0-1.11.89-2 2-2s2 .89 2 2-.89 2-2 2-2-.89-2-2zm4 18v-6h2.5l-2.54-7.63A2.997 2.997 0 0 0 16.06 6H12c-.83 0-1.54.5-1.85 1.21l-2.54 7.63H10v6h10zm-8-8h2.5l1.46-4.37A1 1 0 0 1 11.87 9H12v5zm4 0h2v5h-2v-5z"/>
-                            </svg>
-                            X Community
-                        </a>
-                    </div>
+                    <div class="social-grid">
+  <!-- Discord -->
+  <a class="social-btn" href="https://discord.gg/moonbats" target="_blank" rel="noopener">
+    <div class="social-left">
+      <div class="social-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" role="img" aria-label="Discord">
+          <path d="M19.5 4.3a16.2 16.2 0 0 0-4-1.3l-.2.4a15 15 0 0 1 3.1 1.2 12.5 12.5 0 0 0-4.6-1.4 12.1 12.1 0 0 0-3.7 0 12.5 12.5 0 0 0-4.6 1.4A15 15 0 0 1 8.6 3l-.2-.4a16.2 16.2 0 0 0-4 1.3C2.3 7 1.7 10.1 1.9 13.2c1.7 1.2 3.3 2 4.9 2.4l.6-2a8.5 8.5 0 0 1-1.6-.7l.4-.3c3 1.4 6.3 1.4 9.4 0l.4.3c-.5.3-1 .5-1.6.7l.6 2c1.6-.4 3.2-1.2 4.9-2.4.3-3.6-.5-6.6-2.4-8.9ZM9.3 13c-.7 0-1.3-.6-1.3-1.4 0-.7.6-1.4 1.3-1.4.7 0 1.3.6 1.3 1.4 0 .7-.6 1.4-1.3 1.4Zm5.4 0c-.7 0-1.3-.6-1.3-1.4 0-.7.6-1.4 1.3-1.4.7 0 1.3.6 1.3 1.4 0 .7-.6 1.4-1.3 1.4Z"/>
+        </svg>
+      </div>
+      <div class="social-label">
+        <strong>Discord</strong>
+        <span>Join the cave</span>
+      </div>
+    </div>
+      </a>
+
+  <!-- X / Twitter -->
+  <a class="social-btn" href="https://twitter.com/Moon_Bats" target="_blank" rel="noopener">
+    <div class="social-left">
+      <div class="social-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" role="img" aria-label="X">
+          <path d="M18.9 2H22l-6.8 7.8L23.3 22h-6.7l-5.2-6.6L5.6 22H2.5l7.3-8.4L1 2h6.9l4.7 6.1L18.9 2Zm-1.2 18h1.7L6.8 3.9H5L17.7 20Z"/>
+        </svg>
+      </div>
+      <div class="social-label">
+        <strong>X / Twitter</strong>
+        <span>Official updates</span>
+      </div>
+    </div>
+      </a>
+
+  <!-- Instagram -->
+  <a class="social-btn" href="https://www.instagram.com/MoonBats4Life" target="_blank" rel="noopener">
+    <div class="social-left">
+      <div class="social-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" role="img" aria-label="Instagram">
+          <path d="M7.8 2h8.4A5.8 5.8 0 0 1 22 7.8v8.4A5.8 5.8 0 0 1 16.2 22H7.8A5.8 5.8 0 0 1 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2Zm8.4 2H7.8A3.8 3.8 0 0 0 4 7.8v8.4A3.8 3.8 0 0 0 7.8 20h8.4a3.8 3.8 0 0 0 3.8-3.8V7.8A3.8 3.8 0 0 0 16.2 4ZM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6Zm5.7-2.2a1.2 1.2 0 1 1 0 2.4 1.2 1.2 0 0 1 0-2.4Z"/>
+        </svg>
+      </div>
+      <div class="social-label">
+        <strong>Instagram</strong>
+        <span>Art & community</span>
+      </div>
+    </div>
+      </a>
+
+  <!-- X Community -->
+  <a class="social-btn" href="https://twitter.com/i/communities/1567868413992902659" target="_blank" rel="noopener">
+    <div class="social-left">
+      <div class="social-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" role="img" aria-label="Community">
+          <path d="M16 11c1.7 0 3-1.3 3-3s-1.3-3-3-3-3 1.3-3 3 1.3 3 3 3Zm-8 0c1.7 0 3-1.3 3-3S9.7 5 8 5 5 6.3 5 8s1.3 3 3 3Zm0 2c-2.3 0-7 1.2-7 3.5V19h14v-2.5C15 14.2 10.3 13 8 13Zm8 0c-.3 0-.7 0-1.1.1 1.6.9 2.6 2 2.6 3.4V19h6v-2.5c0-2.3-4.7-3.5-7.5-3.5Z"/>
+        </svg>
+      </div>
+      <div class="social-label">
+        <strong>X Community</strong>
+        <span>Talk with bats</span>
+      </div>
+    </div>
+      </a>
+</div>
                     
                                         
                     <div class="wallets">
@@ -2329,27 +2363,46 @@
           position: fixed;
           top: 18px;
           left: 18px;
-          width: 190px;
-          height: 190px;
+          width: 280px;
+          min-height: 330px;
+          padding: 20px;
           z-index: 9999;
-          border-radius: 22px;
-          background: radial-gradient(circle at top, rgba(212,0,0,0.18), rgba(10,10,14,0.92));
-          border: 1px solid rgba(255,255,255,0.14);
-          box-shadow: 0 18px 55px rgba(0,0,0,0.65), 0 0 18px rgba(212,0,0,0.18);
+          border-radius: 26px;
+          background:
+            radial-gradient(120px 120px at 20% 15%, rgba(212,0,0,0.22), rgba(0,0,0,0) 60%),
+            radial-gradient(220px 180px at 80% 85%, rgba(120,0,40,0.18), rgba(0,0,0,0) 65%),
+            radial-gradient(circle at top, rgba(10,10,14,0.92), rgba(6,6,9,0.96));
+          border: 1px solid rgba(255,255,255,0.16);
+          box-shadow:
+            0 22px 70px rgba(0,0,0,0.72),
+            0 0 26px rgba(212,0,0,0.20);
           backdrop-filter: blur(8px);
           -webkit-backdrop-filter: blur(8px);
           overflow: hidden;
         }
 
+        .moon-overlay::before{
+          content:"";
+          position:absolute;
+          inset:0;
+          background:
+            radial-gradient(1px 1px at 18% 22%, rgba(255,255,255,0.25), transparent 60%),
+            radial-gradient(1px 1px at 62% 18%, rgba(255,255,255,0.18), transparent 60%),
+            radial-gradient(1px 1px at 78% 42%, rgba(255,255,255,0.16), transparent 60%),
+            radial-gradient(1px 1px at 34% 68%, rgba(255,255,255,0.14), transparent 60%),
+            radial-gradient(1px 1px at 70% 78%, rgba(255,255,255,0.20), transparent 60%);
+          opacity: 0.55;
+          pointer-events:none;
+        }
+
         .moon-overlay-inner{
           height: 100%;
           width: 100%;
-          padding: 14px;
           display: flex;
           flex-direction: column;
           align-items: center;
           justify-content: center;
-          gap: 10px;
+          gap: 18px;
         }
 
         .moon-overlay-close{
@@ -2375,12 +2428,31 @@
         }
 
         .moon-graphic{
-          width: 138px;   /* big moon */
+          width: 138px;
           height: 138px;
           border-radius: 50%;
-          background: #0b0b0e;
-          border: 1px solid rgba(255,255,255,0.16);
-          box-shadow: inset 0 0 0 1px rgba(0,0,0,0.35), 0 10px 30px rgba(0,0,0,0.45);
+          position: relative;
+          border: 1px solid rgba(255,255,255,0.18);
+          box-shadow:
+            inset 0 0 0 1px rgba(0,0,0,0.35),
+            inset -14px 10px 30px rgba(0,0,0,0.45),
+            0 16px 40px rgba(0,0,0,0.55),
+            0 0 18px rgba(212,0,0,0.18);
+          overflow: hidden;
+          background: #0b0b0e; /* will be overwritten by JS gradients */
+        }
+
+        .moon-graphic::after{
+          content:"";
+          position:absolute;
+          inset:-2px;
+          border-radius:50%;
+          background: radial-gradient(circle at 30% 25%,
+            rgba(255,255,255,0.20),
+            rgba(255,255,255,0.0) 55%);
+          pointer-events:none;
+          mix-blend-mode: screen;
+          opacity: 0.55;
         }
 
         .moon-text{
@@ -2390,23 +2462,24 @@
 
         .moon-phase-name{
           font-weight: 900;
-          letter-spacing: 0.04em;
-          font-size: 0.9rem;
+          letter-spacing: 0.06em;
+          font-size: 0.86rem;
           color: rgba(255,255,255,0.92);
           text-transform: uppercase;
+          text-shadow: 0 6px 18px rgba(0,0,0,0.55);
         }
 
         .moon-phase-pct{
-          font-weight: 900;
-          font-size: 1.05rem;
+          font-weight: 950;
+          font-size: 1.15rem;
           color: #D40000;
-          margin-top: 4px;
-          text-shadow: 0 0 14px rgba(212,0,0,0.35);
+          margin-top: 6px;
+          text-shadow: 0 0 18px rgba(212,0,0,0.45);
         }
 
         .moon-phase-sub{
           margin-top: 6px;
-          font-size: 0.78rem;
+          font-size: 0.9rem;
           color: rgba(255,255,255,0.65);
         }
 
@@ -2433,23 +2506,26 @@
         /* Mobile sizing */
         @media (max-width: 640px){
           .moon-overlay{
-            width: 138px;
-            height: 138px;
+            width: 200px;
+            min-height: 240px;
+            padding: 16px;
             top: 12px;
             left: 12px;
             border-radius: 18px;
           }
           .moon-overlay-inner{
-            padding: 10px;
-            gap: 8px;
+            gap: 12px;
           }
-          .moon-graphic{
-            width: 92px;
-            height: 92px;
+          .moon-graphic{ width: 92px; height: 92px; }
+          .moon-phase-name{
+            font-size: 0.8rem;
           }
-          .moon-phase-name{ font-size: 0.72rem; }
-          .moon-phase-pct{ font-size: 0.9rem; }
-          .moon-phase-sub{ display: none; } /* keep it clean on mobile */
+          .moon-phase-pct{
+            font-size: 1rem;
+          }
+          .moon-phase-sub{
+            font-size: 0.75rem;
+          }
           .moon-overlay-close{
             width: 30px;
             height: 30px;
@@ -3896,7 +3972,6 @@
             </script>
 <script>
 (function(){
-  // --- Moon phase approximation (good for UI) ---
   function moonPhaseFraction(date){
     const year = date.getUTCFullYear();
     const month = date.getUTCMonth() + 1;
@@ -3910,7 +3985,7 @@
     const JD = JDN;
 
     const synodicMonth = 29.53058867;
-    const daysSinceNew = JD - 2451550.1; // reference new moon
+    const daysSinceNew = JD - 2451550.1;
     let phase = (daysSinceNew / synodicMonth) % 1;
     if (phase < 0) phase += 1;
     return phase; // 0..1
@@ -3933,51 +4008,73 @@
     return Math.round(illum * 100);
   }
 
-  // Render the moon using CSS gradients (no images)
+  // Realistic moon look: craters + depth + moving terminator
   function renderMoon(el, phase){
     const waxing = phase <= 0.5;
-    const p = waxing ? (phase / 0.5) : ((1 - phase) / 0.5); // 0..1
-    const offset = Math.round((1 - p) * 50); // 50..0
+    const p = waxing ? (phase / 0.5) : ((1 - phase) / 0.5); // 0..1 (0=new → 1=full)
+    const offset = (1 - p) * 55; // how far the light moves
 
-    const lightSide = waxing ? "right" : "left";
-    const pos = lightSide === "right" ? `${50 + offset}% 50%` : `${50 - offset}% 50%`;
+    // Light on right for waxing, left for waning (Northern Hemisphere default)
+    const lightX = waxing ? (50 + offset) : (50 - offset);
 
+    // Crater texture (static) + illumination (dynamic)
+    // 1) base moon surface
+    // 2) crater speckles
+    // 3) limb darkening
+    // 4) terminator light (moves)
     el.style.background = `
-      radial-gradient(circle at ${pos},
-        rgba(255,255,255,0.96) 0%,
-        rgba(255,255,255,0.85) 46%,
-        rgba(255,255,255,0.0) 62%
-      ),
+      /* terminator / illuminated part */
+      radial-gradient(circle at ${lightX}% 45%,
+        rgba(245,245,245,0.98) 0%,
+        rgba(230,230,230,0.92) 38%,
+        rgba(200,200,200,0.65) 52%,
+        rgba(20,20,26,0.0) 63%),
+   
+      /* crater texture (multiple tiny craters) */
+      radial-gradient(circle at 28% 32%, rgba(0,0,0,0.18) 0 6px, transparent 7px),
+      radial-gradient(circle at 42% 54%, rgba(0,0,0,0.14) 0 5px, transparent 6px),
+      radial-gradient(circle at 62% 40%, rgba(0,0,0,0.16) 0 4px, transparent 5px),
+      radial-gradient(circle at 70% 62%, rgba(0,0,0,0.12) 0 5px, transparent 6px),
+      radial-gradient(circle at 36% 70%, rgba(0,0,0,0.10) 0 4px, transparent 5px),
+      radial-gradient(circle at 55% 25%, rgba(0,0,0,0.10) 0 3px, transparent 4px),
+
+      /* surface noise shading */
+      radial-gradient(circle at 30% 30%, rgba(255,255,255,0.20), rgba(255,255,255,0.0) 55%),
+      radial-gradient(circle at 70% 70%, rgba(0,0,0,0.22), rgba(0,0,0,0.0) 60%),
+
+      /* limb darkening / sphere depth */
       radial-gradient(circle at 50% 50%,
-        #0b0b0e 0%,
-        #0b0b0e 100%
-      )
+        rgba(255,255,255,0.18) 0%,
+        rgba(0,0,0,0.35) 62%,
+        rgba(0,0,0,0.85) 100%),
+
+      /* base moon color */
+      radial-gradient(circle at 45% 40%,
+        #e9e9e9 0%,
+        #cfcfcf 55%,
+        #9c9c9c 100%)
     `;
   }
 
-  function initMoonOverlay(){
+  function init(){
     const overlay = document.getElementById("moonOverlay");
-    const toggle = document.getElementById("moonOverlayToggle");
-    const closeBtn = document.getElementById("moonOverlayClose");
+    const toggle  = document.getElementById("moonOverlayToggle");
+    const closeBtn= document.getElementById("moonOverlayClose");
+
     const graphic = document.getElementById("moonGraphic");
-    const nameEl = document.getElementById("moonPhaseName");
-    const pctEl = document.getElementById("moonPhasePct");
-    const subEl = document.getElementById("moonPhaseSub");
+    const nameEl  = document.getElementById("moonPhaseName");
+    const pctEl   = document.getElementById("moonPhasePct");
+    const subEl   = document.getElementById("moonPhaseSub");
 
     if (!overlay || !toggle || !closeBtn || !graphic || !nameEl || !pctEl || !subEl) {
-      console.error("Moon overlay elements missing.");
+      console.error("Moon overlay elements missing. Check IDs in HTML.");
       return;
     }
 
-    // state persistence
+    // close/open persistence
     const isClosed = localStorage.getItem("moonOverlayClosed") === "true";
-    if (isClosed) {
-      overlay.style.display = "none";
-      toggle.style.display = "inline-flex";
-    } else {
-      overlay.style.display = "block";
-      toggle.style.display = "none";
-    }
+    overlay.style.display = isClosed ? "none" : "block";
+    toggle.style.display  = isClosed ? "inline-flex" : "none";
 
     closeBtn.addEventListener("click", () => {
       overlay.style.display = "none";
@@ -3989,26 +4086,61 @@
       overlay.style.display = "block";
       toggle.style.display = "none";
       localStorage.setItem("moonOverlayClosed", "false");
+      update(); // refresh when opened
     });
 
-    // compute + render
-    const now = new Date();
-    const phase = moonPhaseFraction(now);
-    const name = phaseName(phase);
-    const illum = illuminationPercent(phase);
+    function update(){
+      const now = new Date();
+      const phase = moonPhaseFraction(now);
+      const name = phaseName(phase);
+      const illum = illuminationPercent(phase);
 
-    renderMoon(graphic, phase);
+      renderMoon(graphic, phase);
 
-    nameEl.textContent = name;
-    pctEl.textContent = `${illum}%`;
-    const localTime = now.toLocaleString(undefined, { hour: "2-digit", minute: "2-digit" });
-    subEl.textContent = `Local time · ${localTime}`;
+      nameEl.textContent = name;
+      pctEl.textContent = illum + "%";
+      const localTime = now.toLocaleString(undefined, { hour:"2-digit", minute:"2-digit" });
+      subEl.textContent = "Local time · " + localTime;
 
-    overlay.setAttribute("aria-label", `Moon phase: ${name}, ${illum}% illumination`);
+      overlay.setAttribute("aria-label", `Moon phase: ${name}, ${illum}% illumination`);
+    }
+
+    update();
   }
 
-  document.addEventListener("DOMContentLoaded", initMoonOverlay);
+  document.addEventListener("DOMContentLoaded", init);
 })();
+</script>
+<script>
+  (function () {
+    const menuBtn = document.querySelector('.mobile-menu-btn');
+    const navLinks = document.querySelector('.nav-links');
+
+    if (!menuBtn || !navLinks) return;
+
+    // toggle open/close
+    menuBtn.addEventListener('click', () => {
+      navLinks.classList.toggle('is-open');
+      menuBtn.setAttribute('aria-expanded', navLinks.classList.contains('is-open'));
+    });
+
+    // close when clicking a link
+    navLinks.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        navLinks.classList.remove('is-open');
+        menuBtn.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    // close when clicking outside
+    document.addEventListener('click', (e) => {
+      const clickedInside = navLinks.contains(e.target) || menuBtn.contains(e.target);
+      if (!clickedInside) {
+        navLinks.classList.remove('is-open');
+        menuBtn.setAttribute('aria-expanded', 'false');
+      }
+    });
+  })();
 </script>
 </body>
 </html>
