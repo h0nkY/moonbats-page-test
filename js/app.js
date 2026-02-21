@@ -44,6 +44,8 @@ async function fetchNFTsFromOpenSea(contract) {
 }
 
 // Create gallery item element
+function clamp(n, min, max){ return Math.max(min, Math.min(max, n)); }
+
 function createGalleryItem(nft, collection) {
     const item = document.createElement('a');
     item.className = 'nft-card';
