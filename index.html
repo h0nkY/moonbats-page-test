@@ -24,23 +24,16 @@
       <button id="moonOverlayClose" class="moon-overlay-close" aria-label="Close moon widget">✕</button>
 
       <div class="moon-overlay-inner">
-        <div class="moon-graphic" id="moonGraphic" aria-hidden="true"></div>
+        <div class="moon-graphic" id="moonGraphic" aria-hidden="true">
+  <canvas id="moonCanvas" width="260" height="260"></canvas>
+</div>
 
         <div class="moon-text">
           <div id="moonPhaseName" class="moon-phase-name">Moon Phase</div>
           <div id="moonPhasePct" class="moon-phase-pct">--%</div>
           <div id="moonPhaseSub" class="moon-phase-sub">Local time · --</div>
         </div>
-        <div class="moon-settings">
-          <label class="hint">Hemisphere</label>
-          <select id="moonHemisphereMode" aria-label="Moon hemisphere mode">
-            <option value="auto">Auto</option>
-            <option value="north">North</option>
-            <option value="south">South</option>
-          </select>
-          <button id="moonFlipBtn" type="button" aria-label="Flip moon orientation">Flip</button>
-        </div>
-      </div>
+              </div>
     </div>
 
     <button id="moonOverlayToggle" class="moon-overlay-toggle" aria-label="Open moon widget">
@@ -2539,88 +2532,21 @@
           background: rgba(0,0,0,0.5);
         }
 
-        /* --- Realistic Moon Rendering (Global) --- */
+        /* Canvas-based Moon Rendering */
         .moon-graphic{
-          width: 170px;
-          height: 170px;
+          width: 260px;
+          height: 260px;
           border-radius: 50%;
-          position: relative;
           overflow: hidden;
-
-          /* base moon surface */
-          background:
-            radial-gradient(circle at 35% 30%, rgba(255,255,255,0.85) 0%, rgba(235,235,235,0.75) 26%, rgba(205,205,205,0.45) 52%, rgba(170,170,170,0.25) 70%, rgba(120,120,120,0.12) 85%, rgba(20,20,30,0) 100%),
-            radial-gradient(circle at 45% 45%, #d9d9d9 0%, #cfcfcf 45%, #bdbdbd 62%, #a9a9a9 78%, #8f8f8f 100%);
-          box-shadow:
-            inset -18px 14px 34px rgba(0,0,0,0.38),
-            0 18px 44px rgba(0,0,0,0.55);
-          border: 1px solid rgba(255,255,255,0.18);
-
-          /* JS sets these */
-          --shadowX: 80%;
-          --shadowSoft: 18%;
+          border: 1px solid rgba(255,255,255,0.20);
+          box-shadow: inset -18px 12px 34px rgba(0,0,0,0.55), 0 18px 60px rgba(0,0,0,0.55);
+          position: relative;
         }
 
-        /* craters / noise */
-        .moon-graphic::before{
-          content:"";
-          position:absolute;
-          inset:-15%;
-          background:
-            radial-gradient(circle at 30% 35%, rgba(90,90,90,0.18) 0 7px, transparent 8px),
-            radial-gradient(circle at 55% 55%, rgba(70,70,70,0.16) 0 10px, transparent 11px),
-            radial-gradient(circle at 62% 30%, rgba(60,60,60,0.12) 0 6px, transparent 7px),
-            radial-gradient(circle at 40% 70%, rgba(80,80,80,0.12) 0 9px, transparent 10px),
-            radial-gradient(circle at 25% 65%, rgba(60,60,60,0.10) 0 5px, transparent 6px);
-          filter: blur(0.2px);
-          opacity: 0.55;
-          pointer-events:none;
-        }
-
-        /* shadow overlay (soft terminator) */
-        .moon-graphic::after{
-          content:"";
-          position:absolute;
-          inset:-30%;
-          background:
-            radial-gradient(circle at var(--shadowX) 50%,
-              rgba(0,0,0,0.00) 0%,
-              rgba(0,0,0,0.00) calc(50% - var(--shadowSoft)),
-              rgba(0,0,0,0.70) 50%,
-              rgba(0,0,0,0.92) 62%,
-              rgba(0,0,0,0.98) 100%);
-          mix-blend-mode: multiply;
-          pointer-events:none;
-        }
-
-        /* Small settings row inside the moon overlay */
-        .moon-settings{
-          margin-top: 10px;
-          display:flex;
-          align-items:center;
-          justify-content:center;
-          gap:10px;
-          font-family: var(--font-main, system-ui);
-          font-size: 12px;
-          color: rgba(255,255,255,0.75);
-        }
-
-        .moon-settings select,
-        .moon-settings button{
-          background: rgba(0,0,0,0.35);
-          color: rgba(255,255,255,0.9);
-          border: 1px solid rgba(255,255,255,0.14);
-          border-radius: 10px;
-          padding: 6px 10px;
-          cursor: pointer;
-        }
-
-        .moon-settings button{
-          padding: 6px 12px;
-        }
-
-        .moon-settings .hint{
-          opacity:0.65;
+        #moonCanvas{
+          width: 100%;
+          height: 100%;
+          display: block;
         }
 
         .moon-text{
@@ -3185,92 +3111,164 @@
     return (1 - Math.cos(2 * Math.PI * phase)) / 2; // 0..1
   }
 
-  function guessHemisphereFromTimeZone() {
-    const tz = Intl.DateTimeFormat().resolvedOptions().timeZone || "";
-    const southHints = [
-      "Australia", "Pacific/Auckland", "Pacific/Chatham", "America/Santiago",
-      "America/Argentina", "Africa/Johannesburg", "Pacific/Fiji", "Pacific/Tahiti",
-      "Indian/Mauritius", "Indian/Reunion", "Pacific/Port_Moresby"
-    ];
-    for (const h of southHints) if (tz.includes(h)) return "south";
-    return "north";
+  async function detectHemisphereAuto() {
+  // Default fallback if user blocks location
+  let hemisphere = "north";
+
+  // Try geolocation (most correct)
+  if ("geolocation" in navigator) {
+    try {
+      const pos = await new Promise((resolve, reject) => {
+        navigator.geolocation.getCurrentPosition(resolve, reject, {
+          enableHighAccuracy: false,
+          timeout: 2500,
+          maximumAge: 24 * 60 * 60 * 1000
+        });
+      });
+      const lat = pos.coords.latitude;
+      hemisphere = lat < 0 ? "south" : "north";
+      // cache
+      localStorage.setItem("moonHemiAuto", hemisphere);
+      return hemisphere;
+    } catch (e) {
+      // ignore and fallback below
+    }
   }
 
-  function getHemisphereMode() {
-    return localStorage.getItem("moonHemisphereMode") || "auto";
-  }
+  // Fallback: cached value
+  const cached = localStorage.getItem("moonHemiAuto");
+  if (cached === "north" || cached === "south") return cached;
 
-  function setHemisphereMode(mode) {
-    localStorage.setItem("moonHemisphereMode", mode);
-  }
+  // Last fallback: timezone heuristic (weak but better than nothing)
+  const tz = Intl.DateTimeFormat().resolvedOptions().timeZone || "";
+  const southHints = [
+    "Australia", "Pacific/Auckland", "Pacific/Chatham", "America/Santiago",
+    "America/Argentina", "Africa/Johannesburg", "Pacific/Fiji",
+    "Indian/Mauritius", "Indian/Reunion", "Pacific/Port_Moresby"
+  ];
+  for (const h of southHints) if (tz.includes(h)) return "south";
+  return "north";
+}
 
-  function getHemisphereResolved() {
-    const mode = getHemisphereMode();
-    if (mode === "north" || mode === "south") return mode;
-    return guessHemisphereFromTimeZone();
-  }
+  function clamp(n, min, max){ return Math.max(min, Math.min(max, n)); }
 
-  function getFlipOverride() {
-    return localStorage.getItem("moonFlipOverride") === "1";
-  }
+let __moonTextureImg = null;
 
-  function toggleFlipOverride() {
-    const next = !getFlipOverride();
-    localStorage.setItem("moonFlipOverride", next ? "1" : "0");
-    return next;
-  }
+function loadMoonTexture() {
+  return new Promise((resolve, reject) => {
+    if (__moonTextureImg && __moonTextureImg.complete) return resolve(__moonTextureImg);
+    const img = new Image();
+    img.onload = () => { __moonTextureImg = img; resolve(img); };
+    img.onerror = reject;
+    img.src = "assets/moon_day_full.jpg";
+  });
+}
 
-  function renderMoon(el, phase) {
-    if (!el) return;
+/**
+ * Draws a realistic textured moon + correct crescent terminator.
+ * phase: 0..1 (0=new, 0.5=full)
+ * hemisphere: "north" | "south"
+ */
+async function renderMoonCanvas(phase, hemisphere) {
+  const canvas = document.getElementById("moonCanvas");
+  if (!canvas) return;
+  const ctx = canvas.getContext("2d");
+  const w = canvas.width, h = canvas.height;
+  const cx = w/2, cy = h/2;
+  const r = Math.min(w,h)*0.48;
 
-    const illum = illuminationFraction(phase); // 0..1
-    const waxing = phase <= 0.5;
+  const img = await loadMoonTexture();
 
-    const hemisphere = getHemisphereResolved(); // "north" | "south"
-    const flipOverride = getFlipOverride();
+  // Clear
+  ctx.clearRect(0,0,w,h);
 
-    let brightRight = (hemisphere === "north") ? waxing : !waxing;
+  // Clip to moon disc
+  ctx.save();
+  ctx.beginPath();
+  ctx.arc(cx, cy, r, 0, Math.PI*2);
+  ctx.closePath();
+  ctx.clip();
 
-    if (flipOverride) brightRight = !brightRight;
+  // Draw texture (cover)
+  // simple cover fit:
+  const scale = Math.max((2*r)/img.width, (2*r)/img.height);
+  const dw = img.width * scale;
+  const dh = img.height * scale;
+  ctx.drawImage(img, cx - dw/2, cy - dh/2, dw, dh);
 
-    const shift = (1 - illum) * 115; // 0..115
-    const shadowX = brightRight ? (50 + shift) : (50 - shift);
+  // Soft limb darkening
+  const limb = ctx.createRadialGradient(cx - r*0.15, cy - r*0.15, r*0.2, cx, cy, r);
+  limb.addColorStop(0, "rgba(0,0,0,0.00)");
+  limb.addColorStop(1, "rgba(0,0,0,0.35)");
+  ctx.fillStyle = limb;
+  ctx.fillRect(cx-r, cy-r, 2*r, 2*r);
 
-    el.style.setProperty("--shadowX", `${shadowX}%`);
+  // ---- Correct illumination geometry ----
+  // illuminated fraction (0..1)
+  const illum = (1 - Math.cos(2 * Math.PI * phase)) / 2;
 
-    const soft = 14 + (1 - illum) * 10; // 14..24
-    el.style.setProperty("--shadowSoft", `${soft}%`);
-  }
+  // waxing?
+  const waxing = phase <= 0.5;
 
-  function initMoonSettingsUI() {
-    const select = document.getElementById("moonHemisphereMode");
-    const flipBtn = document.getElementById("moonFlipBtn");
-    if (!select || !flipBtn) return;
+  // Determine which side is bright in NORTH hemisphere:
+  // waxing = bright RIGHT, waning = bright LEFT
+  let brightRight = waxing;
 
-    select.value = getHemisphereMode();
+  // Hemisphere mirror:
+  if ((hemisphere || "north").toLowerCase() === "south") brightRight = !brightRight;
 
-    select.addEventListener("change", () => {
-      setHemisphereMode(select.value);
-      updateMoonWidget();
-    });
+  // Terminator offset approximation that matches disc curvature well:
+  // d in [-r, +r] where:
+  // illum=0 => d=+r (almost all dark)
+  // illum=0.5 => d=0 (half)
+  // illum=1 => d=-r (full bright)
+  let d = r * (1 - 2*illum);
 
-    flipBtn.addEventListener("click", () => {
-      toggleFlipOverride();
-      updateMoonWidget();
-    });
-  }
+  // If bright is on the RIGHT, shadow bulges from LEFT toward RIGHT,
+  // so shift shadow circle CENTER toward the BRIGHT side.
+  // This leaves a bright crescent on the bright side.
+  const sign = brightRight ? +1 : -1;
+
+  // Draw shadow using "source-atop" so it only affects the disc.
+  ctx.globalCompositeOperation = "source-atop";
+  ctx.fillStyle = "rgba(0,0,0,0.82)";
+
+  // Shadow circle (same radius) shifted by d
+  // Note: shifting toward bright side produces correct crescent orientation.
+  ctx.beginPath();
+  ctx.arc(cx + sign*d, cy, r, 0, Math.PI*2);
+  ctx.closePath();
+  ctx.fill();
+
+  // Subtle terminator blur (soft edge)
+  ctx.globalCompositeOperation = "source-atop";
+  const soft = ctx.createRadialGradient(cx + sign*d*0.95, cy, r*0.15, cx + sign*d, cy, r*1.05);
+  soft.addColorStop(0, "rgba(0,0,0,0.00)");
+  soft.addColorStop(1, "rgba(0,0,0,0.18)");
+  ctx.fillStyle = soft;
+  ctx.fillRect(cx-r, cy-r, 2*r, 2*r);
+
+  // Restore
+  ctx.restore();
+
+  // Outer crisp ring
+  ctx.strokeStyle = "rgba(255,255,255,0.35)";
+  ctx.lineWidth = 2;
+  ctx.beginPath();
+  ctx.arc(cx, cy, r, 0, Math.PI*2);
+  ctx.stroke();
+}
 
   function init(){
     const overlay = document.getElementById("moonOverlay");
     const toggle  = document.getElementById("moonOverlayToggle");
     const closeBtn= document.getElementById("moonOverlayClose");
 
-    const graphic = document.getElementById("moonGraphic");
     const nameEl  = document.getElementById("moonPhaseName");
     const pctEl   = document.getElementById("moonPhasePct");
     const subEl   = document.getElementById("moonPhaseSub");
 
-    if (!overlay || !toggle || !closeBtn || !graphic || !nameEl || !pctEl || !subEl) {
+    if (!overlay || !toggle || !closeBtn || !nameEl || !pctEl || !subEl) {
       console.error("Moon overlay elements missing. Check IDs in HTML.");
       return;
     }
@@ -3293,22 +3291,20 @@
       update(); // refresh when opened
     });
 
-    function updateMoonWidget(){
+    async function updateMoonWidget(){
       const now = new Date();
       const phase = moonPhaseFraction(now);
       const name = phaseName(phase);
       const pct = Math.round(illuminationFraction(phase) * 100);
 
-      renderMoon(graphic, phase);
+      const hemisphere = await detectHemisphereAuto();
+      await renderMoonCanvas(phase, hemisphere);
 
       nameEl.textContent = name;
       pctEl.textContent = pct + "%";
       
       const localTime = now.toLocaleString(undefined, { hour:"2-digit", minute:"2-digit" });
-      const mode = getHemisphereMode();
-      const hem = getHemisphereResolved().toUpperCase();
-      const flip = getFlipOverride() ? " · FLIP" : "";
-      subEl.textContent = `Local time · ${localTime} · Hem: ${hem} (${mode})${flip}`;
+      subEl.textContent = `Local time · ${localTime}`;
 
       overlay.setAttribute("aria-label", `Moon phase: ${name}, ${pct}% illumination`);
     }
@@ -3320,9 +3316,7 @@
     // Initial update
     update();
     
-    // Initialize settings UI
-    initMoonSettingsUI();
-    
+        
     // Update every 10 minutes
     setInterval(updateMoonWidget, 10 * 60 * 1000);
   }
