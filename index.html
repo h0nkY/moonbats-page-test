@@ -19,9 +19,9 @@
     
     </head>
 <body>
-    <!-- Moon Phase Overlay -->
-    <div id="moonOverlay" class="moon-overlay" role="dialog" aria-label="Moon phase widget">
-      <button id="moonOverlayClose" class="moon-overlay-close" aria-label="Close moon widget">✕</button>
+    <!-- Moon Phase Overlay - Completely Hidden -->
+    <div id="moonOverlay" class="moon-overlay" role="dialog" aria-label="Moon phase widget" style="display: none !important; visibility: hidden !important; opacity: 0 !important; pointer-events: none !important; z-index: -9999 !important;" aria-hidden="true">
+      <button id="moonOverlayClose" class="moon-overlay-close" aria-label="Close moon widget">×</button>
 
       <div class="moon-overlay-inner">
         <div class="moon-graphic" id="moonGraphic" aria-hidden="true">
@@ -36,7 +36,7 @@
               </div>
     </div>
 
-    <button id="moonOverlayToggle" class="moon-overlay-toggle" aria-label="Open moon widget">
+    <button id="moonOverlayToggle" class="moon-overlay-toggle" aria-label="Open moon widget" style="display: none !important; visibility: hidden !important; opacity: 0 !important; pointer-events: none !important; z-index: -9999 !important;" aria-hidden="true">
       🌙 Moon
     </button>
 
@@ -93,18 +93,18 @@
                 </div>
                 
                 <div class="collection-links">
-                    <a href="https://opensea.io/collection/moonbatswtf" target="_blank" class="collection-link">
-                        <span>MoonBats</span>
-                        <small>View on OpenSea →</small>
-                    </a>
-                    <a href="https://opensea.io/collection/moonvampswtf" target="_blank" class="collection-link">
-                        <span>MoonVamps</span>
-                        <small>View on OpenSea →</small>
-                    </a>
-                    <a href="https://opensea.io/collection/moonmutantswtf" target="_blank" class="collection-link">
-                        <span>MoonMutants</span>
-                        <small>View on OpenSea →</small>
-                    </a>
+                    <h3>View on OpenSea</h3>
+                    <div class="collection-buttons">
+                        <a href="https://opensea.io/collection/moonbats" target="_blank" class="collection-link">
+                            <span>MoonBats</span>
+                        </a>
+                        <a href="https://opensea.io/collection/moonvamps" target="_blank" class="collection-link">
+                            <span>MoonVamps</span>
+                        </a>
+                        <a href="https://opensea.io/collection/moonmutants" target="_blank" class="collection-link">
+                            <span>MoonMutants</span>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -138,116 +138,18 @@
         <div class="container">
             <h2 class="section-title">MoonBats Timeline</h2>
             
-            <!-- Q3 2022 -->
-            <div class="timeline-section">
-                <div class="timeline-label">Q3<br>2022</div>
-                <div class="timeline-content">
-                    <h3>Launch & Early Traction</h3>
-                    <ul>
-                        <li>Launch of MoonBats NFT collection</li>
-                        <li>Supply reduced to 5,000 NFTs (5,000 burned)</li>
-                        <li>Rapid growth of an active Discord community</li>
-                        <li>Introduction of MoonVamps and MoonMutants</li>
-                    </ul>
-                </div>
+            <div id="timeline-container">
+                <!-- Timeline items will be dynamically loaded here -->
             </div>
-
-            <!-- Q3-Q4 2022 -->
-            <div class="timeline-section">
-                <div class="timeline-label">Q3–Q4<br>2022</div>
-                <div class="timeline-content">
-                    <h3>Community Takeover (CTO)</h3>
-                    <ul>
-                        <li>Original founder stepped away</li>
-                        <li>Ownership transitioned to community leadership</li>
-                        <li>CC0 status confirmed (IP owned by holders)</li>
-                        <li>Introduction of VIB cross-collection status</li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- Q1 2023 -->
-            <div class="timeline-section">
-                <div class="timeline-label">Q1<br>2023</div>
-                <div class="timeline-content">
-                    <h3>Project Recovery & Relaunch</h3>
-                    <ul>
-                        <li>Original developers became inactive</li>
-                        <li>Community sustained project independently</li>
-                        <li>Official transfer of contracts and IP</li>
-                        <li>Relaunch as a fully community-owned project</li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- Q2-Q4 2023 -->
-            <div class="timeline-section">
-                <div class="timeline-label">Q2–Q4<br>2023</div>
-                <div class="timeline-content">
-                    <h3>Utility & Engagement</h3>
-                    <ul>
-                        <li>Launch of gamified community experiences</li>
-                        <li>Introduction of an AI-powered community bot</li>
-                        <li>Large-scale community events</li>
-                        <li>Decision to rebuild $BLOOD for security</li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- Q1-Q2 2024 -->
-            <div class="timeline-section">
-                <div class="timeline-label">Q1–Q2<br>2024</div>
-                <div class="timeline-content">
-                    <h3>Product & Token Launch</h3>
-                    <ul>
-                        <li>Launch of iOS game "MoonBats – Upside Down"</li>
-                        <li>$BLOOD token launch on BASE</li>
-                        <li>Airdrop to existing holders</li>
-                        <li>Liquidity pool burned (LP locked)</li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- Q3-Q4 2024 -->
-            <div class="timeline-section">
-                <div class="timeline-label">Q3–Q4<br>2024</div>
-                <div class="timeline-content">
-                    <h3>Stabilization</h3>
-                    <ul>
-                        <li>Release of $BLOOD digital collectibles</li>
-                        <li>2-year project anniversary</li>
-                        <li>Focus on sustainable growth</li>
-                        <li>Community-first positioning</li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- 2025 -->
-            <div class="timeline-section">
-                <div class="timeline-label">2025</div>
-                <div class="timeline-content">
-                    <h3>Growth & Maturity</h3>
-                    <ul>
-                        <li>$BLOOD reached ~4M USD market cap (ATH)</li>
-                        <li>Start of 3D MoonBats development</li>
-                        <li>Expansion of token-based utility</li>
-                        <li>3 years of uninterrupted continuity</li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- 2026 -->
-            <div class="timeline-section">
-                <div class="timeline-label">2026</div>
-                <div class="timeline-content">
-                    <h3>Utility-First Phase</h3>
-                    <ul>
-                        <li>Launch of soft-staking</li>
-                        <li>Introduction of reward token $GUANO</li>
-                        <li>Staking without wallet custody transfer</li>
-                        <li>Continued development of 3D character</li>
-                    </ul>
-                </div>
+            
+            <!-- Timeline Navigation Buttons -->
+            <div id="timeline-navigation" class="timeline-navigation" style="display: none;">
+                <button id="timeline-back" class="timeline-nav-btn timeline-back-btn" aria-label="Back to newest events">
+                    ← Back to Newest
+                </button>
+                <button id="timeline-load-more" class="timeline-nav-btn timeline-load-more-btn" aria-label="View more timeline events">
+                    View More →
+                </button>
             </div>
         </div>
     </section>
@@ -646,6 +548,14 @@
             </div>
 
             <div id="gallery-grid" class="gallery-grid" style="display: none;" role="grid" aria-label="NFT Gallery"></div>
+            
+            <!-- Load More Button -->
+            <div id="gallery-load-more-container" class="gallery-load-more-container" style="display: none;">
+                <button id="gallery-load-more" class="gallery-load-more-btn" aria-label="Load more NFTs">
+                    Load More NFTs
+                </button>
+                <div id="gallery-count" class="gallery-count"></div>
+            </div>
         </div>
     </section>
 
@@ -1226,6 +1136,156 @@
     <!-- Back to Top Button -->
     <button id="backToTop" class="back-to-top" aria-label="Back to top">↑</button>
 
+    <!-- Tokenomics JavaScript -->
+    <script>
+        // Tokenomics data
+        const tokenomicsData = [
+            { name: 'Community & Ecosystem', percentage: 40, color: '#D40000' },
+            { name: 'Team & Advisors', percentage: 20, color: '#FF6B6B' },
+            { name: 'Liquidity & Marketing', percentage: 25, color: '#4ECDC4' },
+            { name: 'Reserve & Development', percentage: 15, color: '#45B7D1' }
+        ];
+
+        // Token info
+        const tokenInfo = {
+            totalSupply: '10,000,000,000',
+            contractAddress: '0x7db4a2fd91ec324e2efb0e9aa56011bc9f02b56a'
+        };
+
+        // Initialize tokenomics
+        function initTokenomics() {
+            // Set token info
+            const totalSupplyEl = document.getElementById('total-supply');
+            const contractAddressEl = document.getElementById('contract-address');
+            
+            if (totalSupplyEl) totalSupplyEl.textContent = tokenInfo.totalSupply;
+            if (contractAddressEl) contractAddressEl.textContent = tokenInfo.contractAddress;
+
+            // Render pie chart
+            renderPieChart();
+            
+            // Render distribution list
+            renderDistributionList();
+            
+            // Setup interactions
+            setupTokenomicsInteractions();
+        }
+
+        // Render pie chart
+        function renderPieChart() {
+            const pieChart = document.getElementById('pie-chart');
+            if (!pieChart) return;
+
+            const pieSymbol = pieChart.querySelector('.pie-symbol');
+            const pieTotal = pieChart.querySelector('.pie-total');
+            
+            // Set center content
+            if (pieSymbol) pieSymbol.textContent = 'BLOOD';
+            if (pieTotal) pieTotal.textContent = tokenInfo.totalSupply;
+
+            // Calculate cumulative percentages for conic gradient
+            let cumulative = 0;
+            const gradientStops = tokenomicsData.map(segment => {
+                const start = cumulative;
+                cumulative += segment.percentage;
+                const end = cumulative;
+                return `${segment.color} ${start}% ${end}%`;
+            }).join(', ');
+
+            // Apply conic gradient background
+            pieChart.style.background = `conic-gradient(${gradientStops})`;
+            pieChart.style.position = 'relative';
+            pieChart.style.borderRadius = '50%';
+            pieChart.style.width = '280px';
+            pieChart.style.height = '280px';
+
+            // Pie segments removed - only using conic gradient for clean visual display
+
+            // Create labels
+            currentAngle = 0;
+            const radius = 140;
+            const centerX = 150;
+            const centerY = 150;
+
+            tokenomicsData.forEach((segment, index) => {
+                const angle = (segment.percentage / 100) * 360;
+                const endAngle = currentAngle + angle;
+
+                // Create label
+                const labelAngle = currentAngle + angle / 2;
+                const labelRadius = radius * 0.7;
+                const labelX = centerX + Math.cos((labelAngle - 90) * Math.PI / 180) * labelRadius;
+                const labelY = centerY + Math.sin((labelAngle - 90) * Math.PI / 180) * labelRadius;
+
+                const label = document.createElement('div');
+                label.className = 'pie-label';
+                label.style.position = 'absolute';
+                label.style.left = labelX + 'px';
+                label.style.top = labelY + 'px';
+                label.style.transform = 'translate(-50%, -50%)';
+                label.style.color = 'white';
+                label.style.fontSize = '12px';
+                label.style.fontWeight = 'bold';
+                label.style.textShadow = '0 0 4px rgba(0,0,0,0.8)';
+                label.style.pointerEvents = 'none';
+                label.textContent = segment.percentage + '%';
+                pieChart.appendChild(label);
+
+                currentAngle = endAngle;
+            });
+        }
+
+        // Pie clip path function removed - no longer needed
+
+        // Render distribution list
+        function renderDistributionList() {
+            const distributionList = document.getElementById('distribution-list');
+            if (!distributionList) return;
+
+            distributionList.innerHTML = '';
+
+            tokenomicsData.forEach((item, index) => {
+                const listItem = document.createElement('div');
+                listItem.className = 'distribution-item';
+                listItem.innerHTML = `
+                    <div class="distribution-color" style="background-color: ${item.color}"></div>
+                    <div class="distribution-info">
+                        <h4>${item.name}</h4>
+                        <p>${item.percentage}% of total supply</p>
+                    </div>
+                `;
+
+                // Hover interactions removed - pie segments no longer exist
+
+                distributionList.appendChild(listItem);
+            });
+        }
+
+        // Setup interactions
+        function setupTokenomicsInteractions() {
+            // Copy contract address
+            const copyBtn = document.getElementById('copy-contract');
+            const feedback = document.getElementById('copy-feedback');
+
+            if (copyBtn && feedback) {
+                copyBtn.addEventListener('click', function() {
+                    const contractAddress = document.getElementById('contract-address').textContent;
+                    navigator.clipboard.writeText(contractAddress).then(() => {
+                        feedback.style.display = 'block';
+                        setTimeout(() => {
+                            feedback.style.display = 'none';
+                        }, 2000);
+                    });
+                });
+            }
+        }
+
+        // Highlight functions removed - no longer needed without pie segments
+
+        // Initialize tokenomics when DOM is ready
+        document.addEventListener('DOMContentLoaded', initTokenomics);
+    </script>
+
     <!-- Essential App Functions (CSP Compliant) -->
     <script>
         // Wait for the DOM to be fully loaded
@@ -1260,7 +1320,7 @@
 
         // Mobile menu toggle
         function initMobileMenu() {
-            const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+            const mobileMenuToggle = document.querySelector('.mobile-menu-btn');
             const nav = document.querySelector('nav');
             
             if (mobileMenuToggle && nav) {
@@ -1381,6 +1441,15 @@
         .skeleton-card { background:#0c0c0f; border:1px solid #1e1e28; border-radius:10px; aspect-ratio:1; position:relative; overflow:hidden; }
         .skeleton-card::after { content:''; position:absolute; top:0; left:-100%; width:100%; height:100%; background:linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent); animation:shimmer 1.5s infinite; }
         @keyframes shimmer { 0% { left:-100%; } 100% { left:100%; } }
+
+        /* Load More Button */
+        .gallery-load-more-container { text-align:center; margin-top:2rem; }
+        .gallery-load-more-btn { background:#D40000; color:#fff; border:none; padding:1rem 2rem; border-radius:8px; cursor:pointer; font-size:1rem; font-weight:600; transition:all .3s ease; position:relative; overflow:hidden; }
+        .gallery-load-more-btn:hover { background:#ff1a1a; transform:translateY(-2px); box-shadow:0 4px 12px rgba(212,0,0,0.4); }
+        .gallery-load-more-btn:focus { outline:2px solid #fff; outline-offset:2px; }
+        .gallery-load-more-btn:active { transform:translateY(0); }
+        .gallery-load-more-btn:disabled { background:#666; cursor:not-allowed; transform:none; }
+        .gallery-count { margin-top:0.5rem; color:#999; font-size:0.9rem; }
 
         /* Error States */
         .gallery-error { text-align:center; padding:2rem; background:rgba(212,0,0,0.1); border:1px solid rgba(212,0,0,0.3); border-radius:10px; margin:1rem 0; }
@@ -1863,6 +1932,102 @@
             font-size: 1.1rem;
         }
 
+        /* Timeline Navigation Buttons */
+        .timeline-navigation {
+            display: flex;
+            gap: 1rem;
+            justify-content: space-between;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+            position: relative;
+            padding: 0 2rem;
+        }
+
+        .timeline-nav-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .timeline-nav-btn:hover {
+            background: #ff1a1a;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(212, 0, 0, 0.4);
+        }
+
+        .timeline-nav-btn:focus {
+            outline: 2px solid white;
+            outline-offset: 2px;
+        }
+
+        .timeline-nav-btn:active {
+            transform: translateY(0);
+        }
+
+        .timeline-nav-btn:disabled {
+            background: #666;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .timeline-back-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .timeline-back-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.5);
+            color: white;
+        }
+
+        .timeline-back-btn:disabled {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        /* Specific positioning for timeline buttons */
+        #timeline-back {
+            order: 1;
+            flex-shrink: 0;
+        }
+
+        #timeline-load-more {
+            order: 2;
+            flex-shrink: 0;
+        }
+
+        /* Ensure buttons don't overlap with timeline center line */
+        @media (min-width: 769px) {
+            .timeline-navigation {
+                max-width: 800px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+            
+            #timeline-back {
+                margin-right: auto;
+            }
+            
+            #timeline-load-more {
+                margin-left: auto;
+            }
+        }
+
         /* Timeline Responsive */
         @media (max-width: 768px) {
             .timeline {
@@ -2126,24 +2291,43 @@
 
         /* Collection Links Styles */
         .collection-links {
+            margin-top: 2rem;
+            text-align: center;
+            display: block;
+        }
+
+        .collection-links h3 {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            text-shadow: 0 0 10px rgba(212, 0, 0, 0.3);
+            display: block;
+            text-align: center;
+        }
+
+        .collection-buttons {
             display: flex;
             gap: 1rem;
-            margin-top: 2rem;
+            justify-content: center;
             flex-wrap: wrap;
+            margin-top: 0;
         }
 
         .collection-link {
             display: flex;
-            flex-direction: column;
             align-items: center;
+            justify-content: center;
             text-decoration: none;
             color: white;
             background: rgba(40, 40, 55, 0.8);
             border: 1px solid rgba(255, 255, 255, 0.15);
             border-radius: 12px;
-            padding: 1.5rem 2rem;
+            padding: 1rem 2rem;
             transition: all 0.3s ease;
-            min-width: 140px;
+            width: 160px;
+            height: 60px;
+            box-sizing: border-box;
         }
 
         .collection-link:hover {
@@ -2154,21 +2338,9 @@
         }
 
         .collection-link span {
-            font-size: 1.5rem;
+            font-size: 1.2rem;
             font-weight: bold;
-            margin-bottom: 0.5rem;
             color: var(--primary);
-        }
-
-        .collection-link small {
-            font-size: 1.1rem;
-            color: white;
-            opacity: 0.8;
-            transition: opacity 0.3s ease;
-        }
-
-        .collection-link:hover small {
-            opacity: 1;
         }
 
         /* iOS Game Section */
@@ -2811,12 +2983,6 @@
             border-radius: 50%;
             position: relative;
             box-shadow: 0 10px 30px rgba(212, 0, 0, 0.3);
-            transition: filter 0.3s ease, transform 0.3s ease;
-        }
-
-        .pie-chart.highlighted {
-            filter: brightness(1.1);
-            transform: scale(1.02);
         }
 
         .pie-center {
@@ -2940,6 +3106,104 @@
         @media (max-width: 520px) {
             .mb-cookie-actions { justify-content: stretch; }
             .mb-btn { flex: 1; }
+        }
+
+        /* Mobile Navigation Styles */
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 0.5rem 1rem;
+                position: relative;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+                font-size: 1.5rem;
+                padding: 0.75rem 1rem;
+                background: var(--primary);
+                color: white;
+                border: none;
+                border-radius: 8px;
+                cursor: pointer;
+                position: absolute;
+                top: 1rem;
+                right: 1rem;
+                z-index: 1000;
+                transition: all 0.3s ease;
+            }
+            
+            .mobile-menu-btn:hover {
+                background: #ff1a1a;
+                transform: scale(1.05);
+            }
+            
+            .mobile-menu-btn:active {
+                transform: scale(0.95);
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100vh;
+                background: rgba(12, 12, 15, 0.95);
+                backdrop-filter: blur(10px);
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                padding: 2rem;
+                transform: translateX(-100%);
+                transition: transform 0.3s ease;
+                z-index: 999;
+            }
+            
+            .nav-links.is-open {
+                transform: translateX(0);
+            }
+            
+            .nav-links a {
+                color: white;
+                text-decoration: none;
+                font-size: 1.2rem;
+                font-weight: 600;
+                padding: 1rem 1.5rem;
+                border-radius: 8px;
+                transition: all 0.3s ease;
+                display: block;
+                text-align: center;
+                margin: 0.5rem 0;
+                border: 1px solid rgba(255, 255, 255, 0.2);
+            }
+            
+            .nav-links a:hover {
+                background: rgba(255, 255, 255, 0.1);
+                border-color: var(--primary);
+                transform: translateY(-2px);
+            }
+            
+            .nav-backdrop {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100vh;
+                background: rgba(0, 0, 0, 0.5);
+                z-index: 998;
+                opacity: 0;
+                transition: opacity 0.3s ease;
+            }
+            
+            .nav-backdrop.is-open {
+                opacity: 1;
+            }
+            
+            .logo {
+                position: absolute;
+                top: 1rem;
+                left: 1rem;
+                font-size: 1.5rem;
+                z-index: 1001;
+            }
         }
 
         /* Responsive */
@@ -3228,67 +3492,17 @@ async function renderMoonCanvas(phase, hemisphere) {
 }
 
   function init(){
-    const overlay = document.getElementById("moonOverlay");
-    const toggle  = document.getElementById("moonOverlayToggle");
-    const closeBtn= document.getElementById("moonOverlayClose");
-
-    const nameEl  = document.getElementById("moonPhaseName");
-    const pctEl   = document.getElementById("moonPhasePct");
-    const subEl   = document.getElementById("moonPhaseSub");
-
-    if (!overlay || !toggle || !closeBtn || !nameEl || !pctEl || !subEl) {
-      console.error("Moon overlay elements missing. Check IDs in HTML.");
-      return;
-    }
-
-    // close/open persistence
-    const isClosed = localStorage.getItem("moonOverlayClosed") === "true";
-    overlay.style.display = isClosed ? "none" : "block";
-    toggle.style.display  = isClosed ? "inline-flex" : "none";
-
-    closeBtn.addEventListener("click", () => {
-      overlay.style.display = "none";
-      toggle.style.display = "inline-flex";
-      localStorage.setItem("moonOverlayClosed", "true");
-    });
-
-    toggle.addEventListener("click", () => {
-      overlay.style.display = "block";
-      toggle.style.display = "none";
-      localStorage.setItem("moonOverlayClosed", "false");
-      update(); // refresh when opened
-    });
-
-    async function updateMoonWidget(){
-      const now = new Date();
-      const phase = moonPhaseFraction(now);
-      const name = phaseName(phase);
-      const pct = Math.round(illuminationFraction(phase) * 100);
-
-      const hemisphere = await detectHemisphereAuto();
-      await renderMoonCanvas(phase, hemisphere);
-
-      nameEl.textContent = name;
-      pctEl.textContent = pct + "%";
-      
-      const localTime = now.toLocaleString(undefined, { hour:"2-digit", minute:"2-digit" });
-      subEl.textContent = `Local time · ${localTime}`;
-
-      overlay.setAttribute("aria-label", `Moon phase: ${name}, ${pct}% illumination`);
-    }
-
-    function update(){
-      updateMoonWidget();
-    }
-
-    // Initial update
-    update();
-    
-        
-    // Update every 10 minutes
-    setInterval(updateMoonWidget, 10 * 60 * 1000);
+    // Moon widget completely disabled - do not initialize
+    return;
   }
 
+  // Moon widget update function disabled
+  function updateMoonWidget(){
+    // Disabled - do nothing
+    return;
+  }
+
+  // Initialize disabled
   document.addEventListener("DOMContentLoaded", init);
 })();
 </script>
@@ -3408,6 +3622,231 @@ async function renderMoonCanvas(phase, hemisphere) {
         });
     </script>
     
+    <!-- Timeline JavaScript -->
+    <script>
+        // Timeline data (chronological from newest to oldest)
+        const timelineData = [
+            {
+                year: '2026',
+                title: 'Utility-First Phase',
+                events: [
+                    'Launch of soft-staking',
+                    'Introduction of reward token $GUANO',
+                    'Staking without wallet custody transfer',
+                    'Continued development of 3D character'
+                ]
+            },
+            {
+                year: '2025',
+                title: 'Growth & Maturity',
+                events: [
+                    '$BLOOD reached ~4M USD market cap (ATH)',
+                    'Start of 3D MoonBats development',
+                    'Expansion of token-based utility',
+                    '3 years of uninterrupted continuity'
+                ]
+            },
+            {
+                year: '2024',
+                title: 'Stabilization',
+                events: [
+                    'Release of $BLOOD digital collectibles',
+                    '2-year project anniversary',
+                    'Focus on sustainable growth',
+                    'Community-first positioning'
+                ]
+            },
+            {
+                year: '2023',
+                title: 'Product & Token Launch',
+                events: [
+                    'Launch of iOS game "MoonBats – Upside Down"',
+                    '$BLOOD token launch on BASE',
+                    'Airdrop to existing holders',
+                    'Liquidity pool burned (LP locked)'
+                ]
+            },
+            {
+                year: '2023',
+                title: 'Utility & Engagement',
+                events: [
+                    'Launch of gamified community experiences',
+                    'Introduction of an AI-powered community bot',
+                    'Large-scale community events',
+                    'Decision to rebuild $BLOOD for security'
+                ]
+            },
+            {
+                year: '2023',
+                title: 'Project Recovery & Relaunch',
+                events: [
+                    'Original developers became inactive',
+                    'Community sustained project independently',
+                    'Official transfer of contracts and IP',
+                    'Relaunch as a fully community-owned project'
+                ]
+            },
+            {
+                year: '2022',
+                title: 'Community Takeover (CTO)',
+                events: [
+                    'Original founder stepped away',
+                    'Ownership transitioned to community leadership',
+                    'CC0 status confirmed (IP owned by holders)',
+                    'Introduction of VIB cross-collection status'
+                ]
+            },
+            {
+                year: '2022',
+                title: 'Launch & Early Traction',
+                events: [
+                    'Launch of MoonBats NFT collection',
+                    'Supply reduced to 5,000 NFTs (5,000 burned)',
+                    'Rapid growth of an active Discord community',
+                    'Introduction of MoonVamps and MoonMutants'
+                ]
+            }
+        ];
+
+        // Timeline pagination variables
+        let timelineCurrentPage = 0;
+        const timelineItemsPerPage = 3;
+
+        // Initialize timeline
+        function initTimeline() {
+            renderTimelineItems();
+            setupTimelineNavigation();
+        }
+
+        // Render timeline items
+        function renderTimelineItems() {
+            const container = document.getElementById('timeline-container');
+            const navigationContainer = document.getElementById('timeline-navigation');
+            const loadMoreBtn = document.getElementById('timeline-load-more');
+            
+            if (!container) return;
+
+            // Clear container
+            container.innerHTML = '';
+
+            // Calculate visible items
+            const startIndex = timelineCurrentPage * timelineItemsPerPage;
+            const endIndex = Math.min(startIndex + timelineItemsPerPage, timelineData.length);
+            const visibleItems = timelineData.slice(startIndex, endIndex);
+
+            // Render visible items
+            visibleItems.forEach((item, index) => {
+                const timelineSection = document.createElement('div');
+                timelineSection.className = 'timeline-section';
+                timelineSection.style.opacity = '0';
+                
+                timelineSection.innerHTML = `
+                    <div class="timeline-label">${item.year}</div>
+                    <div class="timeline-content">
+                        <h3>${item.title}</h3>
+                        <ul>
+                            ${item.events.map(event => `<li>${event}</li>`).join('')}
+                        </ul>
+                    </div>
+                `;
+                
+                container.appendChild(timelineSection);
+                
+                // Staggered fade-in
+                setTimeout(() => {
+                    timelineSection.style.opacity = '1';
+                }, index * 200);
+            });
+
+            // Update navigation buttons
+            updateTimelineNavigationButtons();
+        }
+
+        // Load more timeline items
+        function loadMoreTimelineItems() {
+            const loadMoreBtn = document.getElementById('timeline-load-more');
+            
+            if (loadMoreBtn) {
+                loadMoreBtn.disabled = true;
+                loadMoreBtn.textContent = 'Loading...';
+            }
+            
+            timelineCurrentPage++;
+            renderTimelineItems();
+            
+            setTimeout(() => {
+                updateTimelineNavigationButtons();
+            }, 500);
+        }
+
+        // Update navigation buttons state
+        function updateTimelineNavigationButtons() {
+            const backBtn = document.getElementById('timeline-back');
+            const loadMoreBtn = document.getElementById('timeline-load-more');
+            const navigationContainer = document.getElementById('timeline-navigation');
+            
+            if (!backBtn || !loadMoreBtn || !navigationContainer) return;
+            
+            const totalItems = timelineData.length;
+            const shownItems = Math.min((timelineCurrentPage + 1) * timelineItemsPerPage, totalItems);
+            
+            // Show navigation container
+            navigationContainer.style.display = 'flex';
+            
+            // Update back button state
+            if (timelineCurrentPage > 0) {
+                backBtn.disabled = false;
+                backBtn.textContent = '← Back to Newest';
+            } else {
+                backBtn.disabled = true;
+                backBtn.textContent = '← At Newest';
+            }
+            
+            // Update load more button state
+            if (shownItems >= totalItems) {
+                loadMoreBtn.style.display = 'none';
+            } else {
+                loadMoreBtn.style.display = 'flex';
+                loadMoreBtn.disabled = false;
+                loadMoreBtn.textContent = 'View More →';
+            }
+        }
+
+        // Go back to newest events
+        function goBackToNewest() {
+            const backBtn = document.getElementById('timeline-back');
+            
+            if (backBtn && !backBtn.disabled) {
+                backBtn.disabled = true;
+                backBtn.textContent = 'Loading...';
+                
+                timelineCurrentPage = 0;
+                renderTimelineItems();
+                
+                setTimeout(() => {
+                    updateTimelineNavigationButtons();
+                }, 500);
+            }
+        }
+
+        // Setup timeline navigation functionality
+        function setupTimelineNavigation() {
+            const backBtn = document.getElementById('timeline-back');
+            const loadMoreBtn = document.getElementById('timeline-load-more');
+            
+            if (backBtn) {
+                backBtn.addEventListener('click', goBackToNewest);
+            }
+            
+            if (loadMoreBtn) {
+                loadMoreBtn.addEventListener('click', loadMoreTimelineItems);
+            }
+        }
+
+        // Initialize timeline when DOM is ready
+        document.addEventListener('DOMContentLoaded', initTimeline);
+    </script>
+
     <!-- Gallery initialization script -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
