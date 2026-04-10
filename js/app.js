@@ -93,11 +93,20 @@ function shuffleArray(array) {
     return shuffled;
 }
 
+// Gallery pagination variables
+let currentPage = 0;
+const itemsPerPage = 12;
+let allGalleryItems = [];
+let filteredItems = [];
+
 // Initialize gallery with OpenSea API and error handling
 async function initGallery() {
     const loadingEl = document.getElementById('gallery-loading');
     const errorEl = document.getElementById('gallery-error');
     const gridEl = document.getElementById('gallery-grid');
+    const loadMoreContainer = document.getElementById('gallery-load-more-container');
+    const loadMoreBtn = document.getElementById('gallery-load-more');
+    const galleryCount = document.getElementById('gallery-count');
 
     if (!loadingEl || !gridEl) return;
 
@@ -105,6 +114,7 @@ async function initGallery() {
     loadingEl.style.display = 'block';
     errorEl.style.display = 'none';
     gridEl.style.display = 'none';
+    loadMoreContainer.style.display = 'none';
 
     try {
         // Fetch NFTs from all collections with concurrency control
@@ -138,27 +148,128 @@ async function initGallery() {
             batchResults.flat().forEach(item => allNFTs.push(item));
         }
 
-        // Randomize all items together
-        const shuffledAll = shuffleArray(allNFTs);
+        // Randomize all items together and store for pagination
+        allGalleryItems = shuffleArray(allNFTs);
+        currentPage = 0;
         
         // Hide loading and show grid
         loadingEl.style.display = 'none';
         gridEl.style.display = 'grid';
         
-        // Add to grid with staggered animation
-        shuffledAll.forEach((item, index) => {
-            item.style.opacity = '0';
-            gridEl.appendChild(item);
-            
-            // Staggered fade-in
-            setTimeout(() => {
-                item.style.opacity = '1';
-            }, index * 50);
+        // Show first batch of items
+        showGalleryItems();
+        
+        // Setup load more functionality
+        if (loadMoreBtn && loadMoreContainer) {
+            loadMoreBtn.addEventListener('click', loadMoreItems);
+            updateLoadMoreButton();
+        }
+        
+        // Setup filter button functionality
+        const filterButtons = document.querySelectorAll('.gallery-controls button');
+        filterButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterGallery(btn.dataset.filter);
+            });
         });
 
     } catch (error) {
         console.error('Error initializing gallery:', error);
         showError(error.message);
+    }
+}
+
+// Show gallery items for current page
+function showGalleryItems() {
+    const gridEl = document.getElementById('gallery-grid');
+    if (!gridEl) return;
+    
+    // Clear grid first
+    gridEl.innerHTML = '';
+    
+    // Get current filtered items
+    const currentItems = currentFilter === 'all' ? allGalleryItems : filteredItems;
+    
+    const startIndex = currentPage * itemsPerPage;
+    const endIndex = Math.min(startIndex + itemsPerPage, currentItems.length);
+    const itemsToShow = currentItems.slice(startIndex, endIndex);
+    
+    // Add items to grid with staggered animation
+    itemsToShow.forEach((item, index) => {
+        item.style.opacity = '0';
+        gridEl.appendChild(item);
+        
+        // Staggered fade-in
+        setTimeout(() => {
+            item.style.opacity = '1';
+        }, index * 50);
+    });
+    
+    updateGalleryCount();
+}
+
+// Load more items
+function loadMoreItems() {
+    const loadMoreBtn = document.getElementById('gallery-load-more');
+    
+    if (loadMoreBtn) {
+        loadMoreBtn.disabled = true;
+        loadMoreBtn.textContent = 'Loading...';
+    }
+    
+    currentPage++;
+    showGalleryItems();
+    
+    setTimeout(() => {
+        updateLoadMoreButton();
+    }, 500);
+}
+
+// Update load more button state
+function updateLoadMoreButton() {
+    const loadMoreBtn = document.getElementById('gallery-load-more');
+    const loadMoreContainer = document.getElementById('gallery-load-more-container');
+    
+    if (!loadMoreBtn || !loadMoreContainer) return;
+    
+    // Get current filtered items
+    const currentItems = currentFilter === 'all' ? allGalleryItems : filteredItems;
+    const totalItems = currentItems.length;
+    const shownItems = Math.min((currentPage + 1) * itemsPerPage, totalItems);
+    
+    if (shownItems >= totalItems) {
+        loadMoreBtn.style.display = 'none';
+    } else {
+        loadMoreContainer.style.display = 'block';
+        loadMoreBtn.disabled = false;
+        loadMoreBtn.textContent = 'Load More NFTs';
+    }
+}
+
+// Update gallery count display
+function updateGalleryCount() {
+    const galleryCount = document.getElementById('gallery-count');
+    const loadMoreContainer = document.getElementById('gallery-load-more-container');
+    
+    if (!galleryCount || !loadMoreContainer) return;
+    
+    // Get current filtered items
+    const currentItems = currentFilter === 'all' ? allGalleryItems : filteredItems;
+    const totalItems = currentItems.length;
+    const shownItems = Math.min((currentPage + 1) * itemsPerPage, totalItems);
+    
+    // Update count text based on filter
+    let countText = `Showing ${shownItems} of ${totalItems} NFTs`;
+    if (currentFilter !== 'all') {
+        const collectionName = currentFilter.charAt(0).toUpperCase() + currentFilter.slice(1);
+        countText = `Showing ${shownItems} of ${totalItems} ${collectionName}`;
+    }
+    
+    galleryCount.textContent = countText;
+    
+    // Show container if we have items
+    if (totalItems > 0) {
+        loadMoreContainer.style.display = 'block';
     }
 }
 
@@ -176,8 +287,18 @@ function showError(message) {
 // Fallback gallery with placeholder images
 function initFallbackGallery() {
     const gridEl = document.getElementById('gallery-grid');
+    const loadMoreContainer = document.getElementById('gallery-load-more-container');
+    const loadMoreBtn = document.getElementById('gallery-load-more');
+    
     if (!gridEl) return;
 
+    // Hide loading and show grid
+    const loadingEl = document.getElementById('gallery-loading');
+    if (loadingEl) loadingEl.style.display = 'none';
+    gridEl.style.display = 'grid';
+
+    // Create fallback items
+    const fallbackItems = [];
     COLLECTIONS.forEach(collection => {
         for (let i = 1; i <= PER_COLLECTION; i++) {
             const item = document.createElement('a');
@@ -195,25 +316,56 @@ function initFallbackGallery() {
             img.loading = 'lazy';
 
             item.appendChild(img);
-
-            galleryItems.push(item);
-            gridEl.appendChild(item);
+            fallbackItems.push(item);
         }
+    });
+
+    // Store for pagination and show first batch
+    allGalleryItems = shuffleArray(fallbackItems);
+    currentPage = 0;
+    
+    // Show first batch of items
+    showGalleryItems();
+    
+    // Setup load more functionality
+    if (loadMoreBtn && loadMoreContainer) {
+        loadMoreBtn.addEventListener('click', loadMoreItems);
+        updateLoadMoreButton();
+    }
+    
+    // Setup filter button functionality
+    const filterButtons = document.querySelectorAll('.gallery-controls button');
+    filterButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            filterGallery(btn.dataset.filter);
+        });
     });
 }
 
-// Filter gallery items
+// Filter gallery items with pagination
 function filterGallery(filter) {
     currentFilter = filter;
-    const items = document.querySelectorAll('.nft-card');
+    currentPage = 0; // Reset to first page when filtering
     
-    items.forEach(item => {
-        if (filter === 'all' || item.dataset.collection === filter) {
-            item.style.display = 'block';
-        } else {
-            item.style.display = 'none';
+    // Filter items based on selection
+    if (filter === 'all') {
+        filteredItems = [];
+    } else {
+        filteredItems = allGalleryItems.filter(item => item.dataset.collection === filter);
+    }
+    
+    // Update button states
+    const filterButtons = document.querySelectorAll('.gallery-controls button');
+    filterButtons.forEach(btn => {
+        btn.classList.remove('active');
+        if (btn.dataset.filter === filter) {
+            btn.classList.add('active');
         }
     });
+    
+    // Show filtered items with pagination
+    showGalleryItems();
+    updateLoadMoreButton();
 }
 
 // Modal functionality
