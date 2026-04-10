@@ -1355,14 +1355,22 @@
             const backToTopBtn = document.getElementById('backToTop');
             
             if (backToTopBtn) {
+                // Check if mobile device
+                const isMobile = window.innerWidth <= 768;
+                
                 // Show/hide button based on scroll position
                 window.addEventListener('scroll', () => {
-                    if (window.pageYOffset > 300) {
-                        backToTopBtn.style.display = 'block';
+                    if (window.pageYOffset > 300 || isMobile) {
+                        backToTopBtn.style.display = 'flex';
                     } else {
                         backToTopBtn.style.display = 'none';
                     }
                 });
+                
+                // Initial check for mobile devices
+                if (isMobile) {
+                    backToTopBtn.style.display = 'flex';
+                }
                 
                 // Scroll to top when clicked
                 backToTopBtn.addEventListener('click', () => {
@@ -3218,7 +3226,7 @@
                 font-size: 1.2rem;
                 font-weight: bold;
                 cursor: pointer;
-                display: none;
+                display: flex !important;
                 align-items: center;
                 justify-content: center;
                 z-index: 1000;
