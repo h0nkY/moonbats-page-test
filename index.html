@@ -3111,50 +3111,47 @@
         /* Mobile Navigation Styles */
         @media (max-width: 768px) {
             .navbar {
-                padding: 0.5rem 1rem;
+                padding: 0.75rem 1rem;
                 position: relative;
+                height: 60px;
             }
             
             .mobile-menu-btn {
                 display: block;
-                font-size: 1.5rem;
-                padding: 0.75rem 1rem;
+                font-size: 1.2rem;
+                padding: 0.5rem 0.75rem;
                 background: var(--primary);
                 color: white;
                 border: none;
-                border-radius: 8px;
+                border-radius: 6px;
                 cursor: pointer;
                 position: absolute;
-                top: 1rem;
+                top: 0.75rem;
                 right: 1rem;
                 z-index: 1000;
                 transition: all 0.3s ease;
+                min-width: 44px;
+                min-height: 44px;
             }
             
             .mobile-menu-btn:hover {
                 background: #ff1a1a;
-                transform: scale(1.05);
-            }
-            
-            .mobile-menu-btn:active {
-                transform: scale(0.95);
             }
             
             .nav-links {
                 position: fixed;
-                top: 0;
+                top: 60px;
                 left: 0;
                 width: 100%;
-                height: 100vh;
-                background: rgba(12, 12, 15, 0.95);
-                backdrop-filter: blur(10px);
+                height: calc(100vh - 60px);
+                background: rgba(12, 12, 15, 0.98);
+                backdrop-filter: blur(8px);
                 flex-direction: column;
-                align-items: center;
-                justify-content: center;
-                padding: 2rem;
+                padding: 0;
                 transform: translateX(-100%);
                 transition: transform 0.3s ease;
                 z-index: 999;
+                overflow-y: auto;
             }
             
             .nav-links.is-open {
@@ -3164,21 +3161,23 @@
             .nav-links a {
                 color: white;
                 text-decoration: none;
-                font-size: 1.2rem;
-                font-weight: 600;
-                padding: 1rem 1.5rem;
-                border-radius: 8px;
-                transition: all 0.3s ease;
+                font-size: 1rem;
+                font-weight: 500;
+                padding: 0.75rem 1.5rem;
+                transition: all 0.2s ease;
                 display: block;
-                text-align: center;
-                margin: 0.5rem 0;
-                border: 1px solid rgba(255, 255, 255, 0.2);
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+                min-height: 44px;
+                line-height: 1.4;
             }
             
             .nav-links a:hover {
-                background: rgba(255, 255, 255, 0.1);
-                border-color: var(--primary);
-                transform: translateY(-2px);
+                background: rgba(212, 0, 0, 0.15);
+                padding-left: 2rem;
+            }
+            
+            .nav-links a:last-child {
+                border-bottom: none;
             }
             
             .nav-backdrop {
@@ -3187,7 +3186,7 @@
                 left: 0;
                 width: 100%;
                 height: 100vh;
-                background: rgba(0, 0, 0, 0.5);
+                background: rgba(0, 0, 0, 0.3);
                 z-index: 998;
                 opacity: 0;
                 transition: opacity 0.3s ease;
@@ -3199,9 +3198,9 @@
             
             .logo {
                 position: absolute;
-                top: 1rem;
+                top: 0.75rem;
                 left: 1rem;
-                font-size: 1.5rem;
+                font-size: 1.3rem;
                 z-index: 1001;
             }
         }
