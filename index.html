@@ -3203,6 +3203,49 @@
                 font-size: 1.3rem;
                 z-index: 1001;
             }
+            
+            /* Mobile Back to Top Button */
+            .back-to-top {
+                position: fixed;
+                bottom: 20px;
+                right: 20px;
+                width: 50px;
+                height: 50px;
+                background: var(--primary);
+                color: white;
+                border: none;
+                border-radius: 50%;
+                font-size: 1.2rem;
+                font-weight: bold;
+                cursor: pointer;
+                display: none;
+                align-items: center;
+                justify-content: center;
+                z-index: 1000;
+                transition: all 0.3s ease;
+                box-shadow: 0 4px 12px rgba(212, 0, 0, 0.3);
+            }
+            
+            .back-to-top:hover {
+                background: #ff1a1a;
+                transform: translateY(-2px);
+                box-shadow: 0 6px 16px rgba(212, 0, 0, 0.4);
+            }
+            
+            .back-to-top:active {
+                transform: translateY(0);
+            }
+        }
+        
+        /* Extra mobile optimization for very small screens */
+        @media (max-width: 480px) {
+            .back-to-top {
+                bottom: 16px;
+                right: 16px;
+                width: 44px;
+                height: 44px;
+                font-size: 1rem;
+            }
         }
 
         /* Responsive */
